@@ -1,0 +1,41 @@
+---
+title: "acervo_estaciones_geodesicas"
+author: "Roberto Vargas Castro"
+date: "2024-05-30"
+output: html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción.
+
+  El acervo de estaciones geodesicas es un conjunto de placas metalicas empotradas sobre el territorio de la Republica Mexicana, contiene valores de la red geodesica horizontal (latitud y longitud), de la red geodesica vertical (altitud) y de la red geodesica gravimetrica (gravedad), los cuales integran la Red Geodesica Nacional Pasiva que agrupadas superan las 170,000 estaciones. Es muy util esta informacion que nos proporciona el Instituto Nacional de Estadistica y Geografia de Mexico (INEGI) solo que si se requiere hacer consultas del acervo completo o de un gran numero de estaciones geodesicas, esta limitado para su descarga. 
+  Se ha descargado por cada estado de la Republica Mexicana el archivo con extension .csv de cada red geodesica y se realizara la union para crear un dataframe que contenga todas las estaciones y que puedan usarse para estudios que requieran una gran cantidad de datos.
+  
+## Objetivo.
+
+  Construir un data frame indiviudal para cada red geodesica.
+  
+## Objetivos especificos.
+
+  * Importar los conjuntos de datos por estado para cada red.
+  * Unir cada conjunto de datos representativo de cada estado de la republica.
+  * Formatear los nombres de los atributos para que sean mas legibles.
+  * Exportar un archivo con extension .csv correspondiente a cada red.
+  * Analizar cada data frame individualmente y en conjunto.
+  
+### Paso 1: Instalar y cargar paquete 'Tidyverse'.
+
+  Tidyverse es una colección de paquetes en R que nos facilita la manipulación, exploración y visualización de datos. Este paquete nos ofrece una combinación de código, funciones en R reutilizables, documentación descriptiva, entre muchas cosas más, a continuación se muestra el fragmento de codigo que nos permite instalar el paquete:
+
+```{r instalación del paquete}
+install.packages("tidyverse")
+```
+
+  Ya instalado, es necesario cargar la libreria para poder empezar a hacer uso de sus funciones:
+
+```{r cargar la libreria}
+library(tidyverse)
+```
