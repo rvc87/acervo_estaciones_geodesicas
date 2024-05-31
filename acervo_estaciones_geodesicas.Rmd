@@ -166,3 +166,41 @@ gravimetrica <- rbind(
   read_csv("zacatecas.csv", locale=locale(encoding="latin1"))
 )
 ```
+### Limpiar
+
+ Antes de realizar cambios en el data frame, se hara uso de la función ´glimpse()´ para tener una idea rapida de como esta constituido el conjunto de datos:
+ 
+```{r exploracion del data frame ´horizontal´}
+glimpse(horizontal)
+```
+
+  El data frame ´horizontal´ nos indica que contiene:
+    - 95,228 estaciones (filas).
+    - 18 atributos (columnas), de las cuales:
+      - 13 atributos son de tipo ´character´.
+      - 3 atributos son de tipo ´numeric´.
+      - 2 atributos son de tipo ´Date´
+
+  Es notorio en el resumen del data frame, que los nombres de columna comienzan con mayusculas y muchas columnas tienen espacios en blanco, haremos uso de la funcion ´clean_names()´ para cambiar los nombres de columna a minusiculas y reemplazar los espacios en blanco con guiones bajos:
+  
+```{r limpieza del data frame}
+horizontal <- clean_names(horizontal)
+vertical <- clean_names(vertical)
+gravimetrica <- clean_names(gravimetrica)
+```
+
+  Los data frames de las tres redes geodesicas tienen en comun que cuentan con columnas para los valores de latitud y longitud en grados-minutos-segundos y grados decimales, por lo general para hacer calculos se utiliza los valores de grados decimales, por lo tanto limpiaremos el data frame de cada red para dejar solo los valores de latitud y longitud decimal y seran renombradas solo con los nombres latitud y longitud:
+  
+```{r}
+horizontal %>%
+  select(-latitud,-longitud) %>%
+  rename(latitud = latitud_dec, longitud = longitud_dec)
+
+vertical %>%
+  select(-latitud,-longitud) %>%
+  rename(latitud = latitud_dec, longitud = longitud_dec)
+
+gravimetrica %>%
+  select(-latitud,-longitud) %>%
+  rename(latitud = latitud_dec, longitud = longitud_dec)
+```
